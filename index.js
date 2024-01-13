@@ -41,6 +41,7 @@ function copyTemplateFiles(destinationPath, choice) {
         );
         fs.writeFileSync(destPath, content);
       } else if (fs.statSync(sourcePath).isDirectory()) {
+        
         // If it's a directory, create it in the destination path
         fs.mkdirSync(destPath, { recursive: true });
         // Recursively copy files in the subdirectory
