@@ -122,12 +122,13 @@ inquirer
       // console.log({ answers });
       console.log(chalk.blue("\n\nThanks for choosing adv-create-react-app"));
       console.log(
-        `${chalk.bold.bgGreen.black("Project created successfully!")}\n${chalk.blue("Now run these commands")} (in terminal) :${chalk.bold.blue(`\n\tcd ${ProjectName} \n\tnpm install \n\tnpm run dev \n`)}`
+        `${chalk.bold.bgGreen.black("Project created successfully!")}\n${chalk.blue("Now run these commands")} (in terminal) :${chalk.bold.blue(`\n\tcd ${ProjectName} \n\tnpm install  \n\tnpm run dev`)}`
       );
       // some advanced functionalities
-      // process.chdir(ProjectName);
       // console.log(`Current working directory: ${process.cwd()}`);
+      process.chdir(ProjectName);
       exec(`git init`);
+      // exec(`npx husky install`);
     }
   })
   .catch((error) => {
