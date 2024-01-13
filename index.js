@@ -1,6 +1,5 @@
 #!/usr/bin/env node
 
-
 const fs = require("fs");
 const path = require("path");
 const inquirer = require("inquirer");
@@ -22,7 +21,7 @@ function copyTemplateFiles(destinationPath, choice) {
   const copyFile = (source, destination) => {
     fs.copyFileSync(source, destination);
     console.log(
-      chalk.gray(`File copied successfully from ${source} to ${destination}`),
+      chalk.gray(`File copied successfully from ${source} to ${destination}`)
     );
   };
 
@@ -33,15 +32,14 @@ function copyTemplateFiles(destinationPath, choice) {
     files.forEach((file) => {
       const sourcePath = path.join(sourceDir, file);
       const destPath = path.join(destDir, file);
-      if (file == "LICENSE" || file == "README.md") {
+      if (file == "LICENSE" || file == "README.md" || file == "package.json") {
         let content = fs.readFileSync(sourcePath, "utf-8");
         content = content.replace(
           /ProjectName/g,
-          ProjectName === "." ? path.basename(process.cwd()) : ProjectName,
+          ProjectName === "." ? path.basename(process.cwd()) : ProjectName
         );
         fs.writeFileSync(destPath, content);
       } else if (fs.statSync(sourcePath).isDirectory()) {
-        
         // If it's a directory, create it in the destination path
         fs.mkdirSync(destPath, { recursive: true });
         // Recursively copy files in the subdirectory
@@ -73,7 +71,7 @@ function handleUserChoice(choice) {
     let parentFolder = path.basename(process.cwd());
     if (!isValidPackageName(parentFolder)) {
       throw new Error(
-        `Not a valid Project Name = ${chalk.bgRed.blackBright(parentFolder)} \nFile naming convention : /^[a-z0-9-._]+$/`,
+        `Not a valid Project Name = ${chalk.bgRed.blackBright(parentFolder)} \nFile naming convention : /^[a-z0-9-._]+$/`
       );
     } else copyTemplateFiles(projectDir, choice);
   } else {
@@ -116,7 +114,7 @@ inquirer
     ProjectName = answers.ProjectName;
     if (!isValidPackageName(ProjectName)) {
       throw new Error(
-        `Not a valid Project Name = ${chalk.bgRed.blackBright(ProjectName)} \nFile naming convention : /^[a-z0-9-._]+$/`,
+        `Not a valid Project Name = ${chalk.bgRed.blackBright(ProjectName)} \nFile naming convention : /^[a-z0-9-._]+$/`
       );
     } else {
       const userChoice = answers.userChoice;
@@ -124,18 +122,18 @@ inquirer
       // console.log({ answers });
       console.log(chalk.blue("\n\nThanks for choosing adv-create-react-app"));
       console.log(
-        `${chalk.bold.bgGreen.black("Project created successfully!")}\n${chalk.blue("Now run these commands")} (in terminal) :${chalk.bold.blue(`\n\tcd ${ProjectName} \n\tnpm install \n\tnpm start \n`)}`,
+        `${chalk.bold.bgGreen.black("Project created successfully!")}\n${chalk.blue("Now run these commands")} (in terminal) :${chalk.bold.blue(`\n\tcd ${ProjectName} \n\tnpm install \n\tnpm run dev \n`)}`
       );
       // some advanced functionalities
       // process.chdir(ProjectName);
       // console.log(`Current working directory: ${process.cwd()}`);
-      // exec(`npm i -f`);
+      exec(`git init`);
     }
   })
   .catch((error) => {
     if (error.isTtyError) {
       console.log(
-        chalk.yellow("Prompt couldn't be rendered in the current environment"),
+        chalk.yellow("Prompt couldn't be rendered in the current environment")
       );
     } else {
       console.log(chalk.yellow("Something went wrong"));
