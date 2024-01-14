@@ -18,7 +18,8 @@
     "inquirer": "^8.0.0"
   },
   "devDependencies": {
-    "alex": "^11.0.1",
-    "prettier": "^3.2.1"
+    "husky": "^8.0.3",
+    "prettier": "^3.2.1",
+    "alex": "^11.0.1"
   }
 }

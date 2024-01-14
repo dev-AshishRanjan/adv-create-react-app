@@ -1,0 +1,17 @@
+{
+  "allow": [
+    "attacks",
+    "colors",
+    "conservative",
+    "crashes",
+    "executed",
+    "executes",
+    "execution",
+    "failed",
+    "hook",
+    "host-hostess",
+    "invalid",
+    "remain",
+    "master-slave"
+  ]
+}
