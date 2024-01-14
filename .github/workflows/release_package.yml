@@ -91,15 +91,19 @@ jobs:
           path-to-changelog: CHANGELOG.md
           version: ${{ env.NEW_VERSION }}
           operation: read
+      # Get version
+      - name: Get version
+        id: package-version
+        uses: martinbeentjes/npm-get-version-action@main
 
       # Update GitHub release with changelog
       - name: Update GitHub release documentation
+        id: create_release
         uses: actions/create-release@v1
         with:
-          tag_name: ${{ env.NEW_VERSION }}
-          release_name: Adv CRA v${{ env.NEW_VERSION }}
-          body: ${{ steps.get-changelog.outputs.changelog }}
+          tag_name: ${{ steps.package-version.outputs.current-version }}
+          release_name: Adv CRA v${{ steps.package-version.outputs.current-version }}
           draft: false
-          prerelease: ${{ startsWith(github.event.inputs.release-type, 'pre') }}
+          prerelease: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
