@@ -3,6 +3,8 @@
   "version": "2.0.2",
   "description": "Advanced form of Create React App",
   "type": "commonjs",
+  "author": "dev-AshishRanjan",
+  "license": "ISC",
   "keywords": [
     "create-react-app",
     "cra",
@@ -18,8 +20,6 @@
     "format": "prettier --write .",
     "alex": "alex ."
   },
-  "author": "dev-AshishRanjan",
-  "license": "ISC",
   "dependencies": {
     "chalk": "^4.1.2",
     "inquirer": "^8.0.0",
@@ -28,5 +28,13 @@
   "devDependencies": {
     "prettier": "^3.2.1",
     "alex": "^11.0.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dev-AshishRanjan/adv-create-react-app.git"
+  },
+  "bugs": {
+    "url": "https://github.com/dev-AshishRanjan/adv-create-react-app/issues"
+  },
+  "homepage": "https://github.com/dev-AshishRanjan/adv-create-react-app#readme"
 }
