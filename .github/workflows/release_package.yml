@@ -94,10 +94,12 @@ jobs:
 
       # Update GitHub release with changelog
       - name: Update GitHub release documentation
-        uses: softprops/action-gh-release@v1
+        uses: actions/create-release@v1
         with:
           tag_name: ${{ env.NEW_VERSION }}
+          release_name: Adv CRA v${{ env.NEW_VERSION }}
           body: ${{ steps.get-changelog.outputs.changelog }}
+          draft: false
           prerelease: ${{ startsWith(github.event.inputs.release-type, 'pre') }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
