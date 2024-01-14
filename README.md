@@ -44,6 +44,42 @@ As the React Scripts or vite scripts are of production level, this package uses 
     <img src="https://img.shields.io/badge/react-7c3aed?style=for-the-badge&logo=react&logoColor=white" alt="react official Website"/>
 </p>
 
+## Usage
+
+To use this package run this code in terminal
+
+```sh
+npx adv-create-react-app
+```
+
+Now you will be asked some(2) prompts, answer them according to this guideline
+
+1. give your project name (follow the react naming guideline) :
+
+```node
+? Project name: (adv-cra)
+```
+
+2. Select the framework from the options
+
+```node
+? Please select Framework: (Use arrow keys)
+> React
+  React + TS
+  React + Tailwind
+  React + TS + Tailwind
+```
+
+3. Run all the commands given at the end of execution
+
+eg.
+
+```node
+cd .
+npm install
+npm run dev
+```
+
 ## Docker
 
 The steps to use docker for the initailized project using this package
