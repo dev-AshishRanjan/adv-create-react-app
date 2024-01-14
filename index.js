@@ -1,27 +1,27 @@
 #!/usr/bin/env node
 
-const fs = require("fs");
-const path = require("path");
-const inquirer = require("inquirer");
-const { exec } = require("child_process");
-const chalk = require("chalk");
+const fs = require('fs');
+const path = require('path');
+const inquirer = require('inquirer');
+const { exec } = require('child_process');
+const chalk = require('chalk');
 
 var ProjectName;
 
-console.log(chalk.bgGreen.black("Initializing Advanced React App"));
+console.log(chalk.bgGreen.black('Initializing Advanced React App'));
 // Function to copy template files
 function copyTemplateFiles(destinationPath, choice) {
   // source
   // const currentModuleDir = path.dirname(new URL(import.meta.url).pathname);
   // console.log(path.dirname(new URL(import.meta.url).pathname));
-  const dir = path.join(__dirname, "template");
-  const globalDir = path.join(dir, "global");
+  const dir = path.join(__dirname, 'template');
+  const globalDir = path.join(dir, 'global');
   const templateDir = path.join(dir, choice);
 
   const copyFile = (source, destination) => {
     fs.copyFileSync(source, destination);
     console.log(
-      chalk.gray(`File copied successfully from ${source} to ${destination}`)
+      chalk.gray(`File copied successfully from ${source} to ${destination}`),
     );
   };
 
@@ -29,14 +29,14 @@ function copyTemplateFiles(destinationPath, choice) {
   const copyFilesRecursively = (sourceDir, destDir) => {
     const files = fs.readdirSync(sourceDir);
 
-    files.forEach((file) => {
+    files.forEach(file => {
       const sourcePath = path.join(sourceDir, file);
       const destPath = path.join(destDir, file);
-      if (file == "LICENSE" || file == "README.md" || file == "package.json") {
-        let content = fs.readFileSync(sourcePath, "utf-8");
+      if (file == 'LICENSE' || file == 'README.md' || file == 'package.json') {
+        let content = fs.readFileSync(sourcePath, 'utf-8');
         content = content.replace(
           /ProjectName/g,
-          ProjectName === "." ? path.basename(process.cwd()) : ProjectName
+          ProjectName === '.' ? path.basename(process.cwd()) : ProjectName,
         );
         fs.writeFileSync(destPath, content);
       } else if (fs.statSync(sourcePath).isDirectory()) {
@@ -67,11 +67,11 @@ function handleUserChoice(choice) {
   if (!fs.existsSync(projectDir)) {
     fs.mkdirSync(projectDir);
     copyTemplateFiles(projectDir, choice);
-  } else if (ProjectName === ".") {
+  } else if (ProjectName === '.') {
     let parentFolder = path.basename(process.cwd());
     if (!isValidPackageName(parentFolder)) {
       throw new Error(
-        `Not a valid Project Name = ${chalk.bgRed.blackBright(parentFolder)} \nFile naming convention : /^[a-z0-9-._]+$/`
+        `Not a valid Project Name = ${chalk.bgRed.blackBright(parentFolder)} \nFile naming convention : /^[a-z0-9-._]+$/`,
       );
     } else copyTemplateFiles(projectDir, choice);
   } else {
@@ -89,40 +89,40 @@ function isValidPackageName(packageName) {
 // Main CLI logic with an MCQ
 const TemplateQuestions = [
   {
-    type: "input",
-    name: "ProjectName",
-    message: "Project name:",
-    default: "adv-cra",
+    type: 'input',
+    name: 'ProjectName',
+    message: 'Project name:',
+    default: 'adv-cra',
     // validate: isValidPackageName,
   },
   {
-    type: "list",
-    name: "userChoice",
-    message: "Please select Framework:",
+    type: 'list',
+    name: 'userChoice',
+    message: 'Please select Framework:',
     choices: [
-      "React",
-      "React + TS",
-      "React + Tailwind",
-      "React + TS + Tailwind",
+      'React',
+      'React + TS',
+      'React + Tailwind',
+      'React + TS + Tailwind',
     ],
   },
 ];
 
 inquirer
   .prompt(TemplateQuestions)
-  .then((answers) => {
+  .then(answers => {
     ProjectName = answers.ProjectName;
     if (!isValidPackageName(ProjectName)) {
       throw new Error(
-        `Not a valid Project Name = ${chalk.bgRed.blackBright(ProjectName)} \nFile naming convention : /^[a-z0-9-._]+$/`
+        `Not a valid Project Name = ${chalk.bgRed.blackBright(ProjectName)} \nFile naming convention : /^[a-z0-9-._]+$/`,
       );
     } else {
       const userChoice = answers.userChoice;
       handleUserChoice(userChoice);
       // console.log({ answers });
-      console.log(chalk.blue("\n\nThanks for choosing adv-create-react-app"));
+      console.log(chalk.blue('\n\nThanks for choosing adv-create-react-app'));
       console.log(
-        `${chalk.bold.bgGreen.black("Project created successfully!")}\n${chalk.blue("Now run these commands")} (in terminal) :${chalk.bold.blue(`\n\tcd ${ProjectName} \n\tnpm install  \n\tnpm run dev`)}`
+        `${chalk.bold.bgGreen.black('Project created successfully!')}\n${chalk.blue('Now run these commands')} (in terminal) :${chalk.bold.blue(`\n\tcd ${ProjectName} \n\tnpm install  \n\tnpm run dev`)}`,
       );
       // some advanced functionalities
       // console.log(`Current working directory: ${process.cwd()}`);
@@ -131,13 +131,13 @@ inquirer
       // exec(`npx husky install`);
     }
   })
-  .catch((error) => {
+  .catch(error => {
     if (error.isTtyError) {
       console.log(
-        chalk.yellow("Prompt couldn't be rendered in the current environment")
+        chalk.yellow("Prompt couldn't be rendered in the current environment"),
       );
     } else {
-      console.log(chalk.yellow("Something went wrong"));
+      console.log(chalk.yellow('Something went wrong'));
       console.error(chalk.red.bold(error));
     }
   });
