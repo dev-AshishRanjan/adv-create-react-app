@@ -1,8 +1,15 @@
 {
   "name": "adv-create-react-app",
-  "version": "1.0.0",
+  "version": "2.0.1",
   "description": "Advanced form of Create React App",
   "type": "commonjs",
+  "keywords": [
+    "create-react-app",
+    "cra",
+    "adv-cra",
+    "adv-create-react-app",
+    "advanced"
+  ],
   "bin": {
     "adv-create-react-app": "./index.js"
   },
