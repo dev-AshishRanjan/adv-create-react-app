@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import javascriptLogo from './assets/javascript.svg'
+import typescriptLogo from './assets/typescript.svg'
 import reactLogo from '/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -14,10 +14,10 @@ function App() {
           <img src={viteLogo} className="logo" alt="Vite logo" />
         </a>
         <a href="https://react.dev" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="JavaScript logo" />
+          <img src={reactLogo} className="logo react" alt="Typescript logo" />
         </a>
-        <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript" target="_blank" rel="noreferrer">
-          <img src={javascriptLogo} className="logo" alt="React logo" />
+        <a href="https://www.typescriptlang.org/docs/" target="_blank" rel="noreferrer">
+          <img src={typescriptLogo} className="logo" alt="React logo" />
         </a>
       </div>
       <h1>Vite + React + JS</h1>
@@ -30,7 +30,7 @@ function App() {
         </p>
       </div>
       <p className="read-the-docs">
-        Click on the Vite, React and JavaScript logos to learn more
+        Click on the Vite, React and Typescript logos to learn more
       </p>
     </>
   )
