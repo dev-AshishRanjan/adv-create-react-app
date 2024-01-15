@@ -1,0 +1,4 @@
+# sending empty .npmignore file intentionally
+# This is to fix the issue, where .gitignore files are not sent to npmjs
+# solution from : https://github.com/npm/npm/issues/3763
+# So try to keep this file blank
