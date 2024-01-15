@@ -39,6 +39,11 @@ function copyTemplateFiles(destinationPath, choice) {
           ProjectName === '.' ? path.basename(process.cwd()) : ProjectName,
         );
         fs.writeFileSync(destPath, content);
+      } else if (file == 'gitignore') {
+        // Convert "gitignore" to ".gitignore"
+        const newDestPath = path.join(destDir, '.gitignore');
+        let content = fs.readFileSync(sourcePath, 'utf-8');
+        fs.writeFileSync(newDestPath, content);
       } else if (fs.statSync(sourcePath).isDirectory()) {
         // If it's a directory, create it in the destination path
         fs.mkdirSync(destPath, { recursive: true });

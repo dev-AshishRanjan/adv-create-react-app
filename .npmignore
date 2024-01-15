@@ -2,3 +2,5 @@
 # This is to fix the issue, where .gitignore files are not sent to npmjs
 # solution from : https://github.com/npm/npm/issues/3763
 # So try to keep this file blank
+# Update : This method doesn't solve the issue
+# using gitignore -> .gitignore during gereration
